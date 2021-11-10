@@ -1,38 +1,37 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
-  flex-direction: column;
+  justify-content:space-evenly;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  background-color: #eadaf2;
+  margin: 75px 25px;
 }
 
-.App-link {
-  color: #61dafb;
+/* .MuiButtonBase-root.css-1s9g4nu-MuiButtonBase-root-MuiFab-root{
+  color:black;
+  background-color:black;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.MuiFab-sizeLarge.css-1s9g4nu-MuiButtonBase-root-MuiFab-root{
+  color:black;
+  background-color:black;
+}
+.MuiFab-root.css-1s9g4nu-MuiButtonBase-root-MuiFab-root{
+  color:black;
+  background-color:black;
+}
+.MuiFab-circular.css-1s9g4nu-MuiButtonBase-root-MuiFab-root{
+  color:black;
+  background-color:black;
+} */
+.MuiFab-circular.MuiFab-root{
+  background-color:#97f09d;
+}
+.MuiFab-circular.MuiFab-root:hover{
+  background-color: #eadaf2;
+  ;
 }

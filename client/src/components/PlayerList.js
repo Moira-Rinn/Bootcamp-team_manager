@@ -1,20 +1,17 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { navigate } from '@reach/router';
 import NavBtns from './btns/NavBtns';
-import AddBtn from './btns/AddBtn';
-import { Card, CardContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const PlayerList = (props) => {
-  const { list, removeFromDom } = props;
-
-  // list.sort(function (a, b) {
-  //   let nameA = a.playerLastName.toUpperCase();
-  //   let nameB = b.playerLastName.toUpperCase();
-  //   if (nameA < nameB) { return -1; }
-  //   if (nameA > nameB) { return 1; }
-  //   return 0;
-  // });
+  const { playerList, removeFromDom } = props;
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -57,27 +54,56 @@ const PlayerList = (props) => {
   }));
 
   const classes = useStyles();
-  const { card, orangeCard, txtColor, container, wrapper } = classes;
+  const { container, wrapper } = classes;
 
   return (
     <div className={container}>
       <div className={wrapper}>
         <h2>Players:</h2>
-        <AddBtn />
       </div >
 
-      {list.map((player, idx) => {
-        return (
-          <Card key={idx} className={card}>
-            <CardContent className={orangeCard}>
-              <Link className={txtColor} to={`/Players/${player._id}`}>
-                <h3>{player.firstName} {player.lastName}</h3>
-              </Link>
-              <NavBtns id={player._id} successCallback={() => removeFromDom(player._id)} />
-            </CardContent>
-          </Card>
-        )
-      })}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Number</TableCell>
+              <TableCell>Player</TableCell>
+              <TableCell align="right">Position</TableCell>
+              <TableCell align="right">Height&nbsp;(in)</TableCell>
+              <TableCell align="right">Weight&nbsp;(lbs)</TableCell>
+              <TableCell align="right">Throws</TableCell>
+              <TableCell align="right">Bats</TableCell>
+              <TableCell align="right">Date of Birth</TableCell>
+              <TableCell align="center">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {playerList.map((player, idx) => {
+              return (
+                <TableRow
+                  key={player._id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {player.number}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    <h3 onClick={() => navigate(`/players/${player._id}`, { state: { playerList } })}>{player.firstName} {player.lastName} </h3>
+                  </TableCell>
+                  <TableCell align="right">{player.position}</TableCell>
+                  <TableCell align="right">{player.height}</TableCell>
+                  <TableCell align="right">{player.weight}</TableCell>
+                  <TableCell align="right">{player.throws}</TableCell>
+                  <TableCell align="right">{player.bats}</TableCell>
+                  <TableCell align="right">{player.dob}</TableCell>
+                  <TableCell align="right"> <NavBtns id={player._id} successCallback={() => removeFromDom(player._id)} /></TableCell>
+                </TableRow>
+              )
+            })
+            }
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div >
   )
 }

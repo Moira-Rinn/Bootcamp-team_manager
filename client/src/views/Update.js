@@ -34,7 +34,7 @@ const Update = (props) => {
         setErrors(errorArr);
       })
   }
-  console.log("this is Update:", player)
+
   return (
     <div>
       <h1>Update Player:</h1>
@@ -52,7 +52,7 @@ const Update = (props) => {
               bats: player.bats,
               dob: player.dob,
               number: player.number,
-              position: player.position
+              position: player.position,
             }
           }}
           id={id}

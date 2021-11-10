@@ -5,12 +5,16 @@ import BackBtn from './btns/BackBtn';
 import DeleteBtn from './btns/DeleteBtn';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { Card } from '@material-ui/core';
 
 const PlayerForm = (props) => {
+
   const { initialPlayer, onSubmitProp, id } = props;
   const { playerObj } = initialPlayer;
-  // console.log("initial:", initialPlayer)
+
   const [player, setPlayer] = useState({
     firstName: playerObj.firstName,
     lastName: playerObj.lastName,
@@ -20,15 +24,15 @@ const PlayerForm = (props) => {
     bats: playerObj.bats,
     dob: playerObj.dob,
     number: playerObj.number,
-    position: playerObj.position
+    position: playerObj.position,
+    isPlaying: playerObj.isPlaying
   });
-  // const [playerLastName, setPlayerLastName] = useState(initialPlayerLastName);
+
+  //RADIO BTN FUNCTIONS:
 
   const onSubmitHandler = e => {
     e.preventDefault();
     onSubmitProp({ player });
-    // setPlayer({ ...player, firstName: initialPlayerFirstName });
-    // setPlayer({ ...player, firstName: initialPlayerLastName });
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -43,7 +47,7 @@ const PlayerForm = (props) => {
       width: '100%',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       padding: theme.spacing(2),
     },
     card: {
@@ -83,7 +87,10 @@ const PlayerForm = (props) => {
   return (
     <div>
       <form className={container} onSubmit={onSubmitHandler}>
-        <h2>Name:</h2>
+        <div className={wrapper}>
+          <h3>Enter Player Information:</h3>
+
+        </div>
         <div className={wrapper}>
           <Card className={card} >
             <Card className={orangeCard}>
@@ -123,24 +130,29 @@ const PlayerForm = (props) => {
                 onChange={(e) => { setPlayer({ ...player, weight: e.target.value }) }}
                 className={txtColor}
               />
-              <TextField
-                required
-                id="outlined-required"
-                label="Throws"
-                name="playerThrows"
+              <RadioGroup
+                aria-label="throws"
+                name="throws"
                 value={player.throws}
                 onChange={(e) => { setPlayer({ ...player, throws: e.target.value }) }}
-                className={txtColor}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Bats"
-                name="playerBats"
+              >
+                <h4>Throws</h4>
+                <FormControlLabel value="Right" control={<Radio />} label="Right" />
+                <FormControlLabel value="Left" control={<Radio />} label="Left" />
+                <FormControlLabel value="Both" control={<Radio />} label="Both" />
+              </RadioGroup>
+              <RadioGroup
+                aria-label="bats"
+                name="bats"
                 value={player.bats}
                 onChange={(e) => { setPlayer({ ...player, bats: e.target.value }) }}
-                className={txtColor}
-              />
+              >
+                <h4>Bats</h4>
+                <FormControlLabel value="Right" control={<Radio />} label="Right" />
+                <FormControlLabel value="Left" control={<Radio />} label="Left" />
+                <FormControlLabel value="Both" control={<Radio />} label="Both" />
+              </RadioGroup>
+
               <TextField
                 required
                 id="outlined-required"
@@ -168,14 +180,13 @@ const PlayerForm = (props) => {
                 onChange={(e) => { setPlayer({ ...player, position: e.target.value }) }}
                 className={txtColor}
               />
-
             </Card>
-            <div>
-              <SubmitBtn />
-              <BackBtn />
-              {id ? <DeleteBtn id={id} successCallback={() => navigate(`/players`)} /> : null}
-            </div>
           </Card>
+        </div>
+        <div>
+          {player.firstName.length > 2 && player.lastName.length > 2 ? <SubmitBtn /> : null}
+          <BackBtn />
+          {id ? <DeleteBtn id={id} successCallback={() => navigate(`/players`)} /> : null}
         </div>
       </form>
     </div>

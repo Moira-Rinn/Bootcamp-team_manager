@@ -5,47 +5,45 @@ const PlayerSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: [true],
-    minLength: [3, "First name must be 3 or more characters"]
+    minLength: [2, "First name must be 2 or more characters"]
   },
   lastName: {
     type: String,
     required: [true],
-    minLength: [3, "Last name must be 3 or more characters"]
+    minLength: [2, "Last name must be 2 or more characters"]
   },
-  height: {
+  height: { //number
+    type: Number,
+    required: [true],
+  },
+  weight: { //number
+    type: Number,
+    required: [true],
+  },
+  throws: { //check box right, left, both
     type: String,
     required: [true],
-    minLength: [3, "Last name must be 3 or more characters"]
   },
-  weight: {
+  bats: { //check box right, left, both
     type: String,
     required: [true],
-    minLength: [3, "Last name must be 3 or more characters"]
   },
-  throws: {
-    type: String,
-    required: [true],
-    minLength: [3, "Last name must be 3 or more characters"]
+  dob: { //date
+    type: Date,
+    required: [true]
   },
-  bats: {
-    type: String,
-    required: [true],
-    minLength: [3, "Last name must be 3 or more characters"]
-  },
-  dob: {
-    type: String,
-    required: [true],
-    minLength: [3, "Last name must be 3 or more characters"]
-  },
-  number: {
-    type: String,
-    required: [true],
-    minLength: [3, "Last name must be 3 or more characters"]
+  number: { //number
+    type: Number,
+    required: [true]
   },
   position: {
     type: String,
     required: [true],
     minLength: [3, "Last name must be 3 or more characters"]
+  },
+  isPlaying: {
+    type: Object,
+    required: [false]
   },
 }, { timestamps: true })
 
