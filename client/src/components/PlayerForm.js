@@ -137,20 +137,25 @@ const PlayerForm = (props) => {
                 onChange={(e) => { setPlayer({ ...player, throws: e.target.value }) }}
               >
                 <h4>Throws</h4>
-                <FormControlLabel value="Right" control={<Radio />} label="Right" />
-                <FormControlLabel value="Left" control={<Radio />} label="Left" />
-                <FormControlLabel value="Both" control={<Radio />} label="Both" />
+                <div style={{ display: 'flex' }}>
+                  <FormControlLabel value="Right" control={<Radio />} label="Right" />
+                  <FormControlLabel value="Left" control={<Radio />} label="Left" />
+                  <FormControlLabel value="Both" control={<Radio />} label="Both" />
+                </div>
               </RadioGroup>
               <RadioGroup
                 aria-label="bats"
                 name="bats"
                 value={player.bats}
+
                 onChange={(e) => { setPlayer({ ...player, bats: e.target.value }) }}
               >
                 <h4>Bats</h4>
-                <FormControlLabel value="Right" control={<Radio />} label="Right" />
-                <FormControlLabel value="Left" control={<Radio />} label="Left" />
-                <FormControlLabel value="Both" control={<Radio />} label="Both" />
+                <div style={{ display: 'flex' }}>
+                  <FormControlLabel value="Right" control={<Radio />} label="Right" />
+                  <FormControlLabel value="Left" control={<Radio />} label="Left" />
+                  <FormControlLabel value="Both" control={<Radio />} label="Both" />
+                </div>
               </RadioGroup>
 
               <TextField

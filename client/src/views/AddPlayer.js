@@ -6,8 +6,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { navigate } from '@reach/router';
-import { makeStyles } from '@material-ui/core/styles';
-// import { Card } from '@material-ui/core';
 
 const AddPlayer = () => {
   const [playerList, setPlayerList] = useState([]);
@@ -44,34 +42,13 @@ const AddPlayer = () => {
     setValue(newValue);
   };
 
-  const useStyles = makeStyles((theme) => ({
-    //   container: {
-    //     textAlign: 'left',
-    //     backgroundColor: '#eadaf2',
-    //     padding: theme.spacing(1),
-    //     borderRadius: '5px'
-    //   },
-    //   txtColor: {
-    //     padding: '10px',
-    //     margin: '10px',
-    //     color: '#29002e',
-    //   },
-    selected: {
-      fontSize: '18px'
-    }
-
-  }));
-
-  const classes = useStyles();
-  // const { txtColor, container } = classes;
-
   return (
 
     <Box sx={{ width: '100%' }} >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="List" {...a11yProps(0)} onClick={(e) => setTimeout(() => navigate('/players/'), 300)} />
-          <Tab className={classes.selected} label="Add Player" {...a11yProps(1)} />
+          <Tab label="Add Player" {...a11yProps(1)} />
           <Tab label="Schedule" {...a11yProps(2)} onClick={(e) =>
             setTimeout(() => navigate('/players/schedule'), 300)} />
         </Tabs>

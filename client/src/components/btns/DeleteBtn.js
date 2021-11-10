@@ -32,14 +32,11 @@ const DeleteBtn = (props) => {
   const { btn } = classes;
 
   return (
-    <Button variant='outlined' size='small' onClick={() => {
-      let del = window.confirm("Are you sure?")
-      if (del === true) {
-        deletePlayer();
-      } else {
-        return null;
-      }
-    }} className={btn}>
+    <Button
+      variant='outlined'
+      size='small'
+      onClick={() => window.confirm("Are you sure?") === true ? deletePlayer : null}
+      className={btn}>
       <DeleteIcon />
     </Button>
   )

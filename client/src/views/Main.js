@@ -16,13 +16,10 @@ const Main = () => {
     axios.get("http://localhost:8000/api/players")
       .then(res => {
         setPlayerList(res.data.thePlayers);
-        // console.log("all players:", res.data.thePlayers)
         setLoaded(true);
       })
       .catch(err => console.log(err));
   }, []);
-
-  // const selectDay = day => { setGameDay(day); }
 
   const removeFromDom = id => {
     setPlayerList(playerList.filter(player => player._id !== id));
