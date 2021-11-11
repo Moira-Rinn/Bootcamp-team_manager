@@ -35,7 +35,7 @@ const DeleteBtn = (props) => {
     <Button
       variant='outlined'
       size='small'
-      onClick={() => window.confirm("Are you sure?") === true ? deletePlayer : null}
+      onClick={(e) => window.confirm("Are you sure?") && deletePlayer(e)}
       className={btn}>
       <DeleteIcon />
     </Button>

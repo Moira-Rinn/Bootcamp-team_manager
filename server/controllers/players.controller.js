@@ -21,7 +21,7 @@ module.exports = {
   },
 
   createNewPlayer: (req, res) => {
-    console.log("req:", req, "res:", res);
+    // console.log("req:", req, "res:", res);
     Player.create(req.body)
       .then((newPlayer) => {
         console.log("This is newPlayer:", newPlayer);
